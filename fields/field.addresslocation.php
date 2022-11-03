@@ -43,7 +43,7 @@
 					Symphony::Log()->pushToLog($err, E_ERROR, true);
 				}
 
-				$result = $response->results[0];
+				$result = $response->results[0] ?? null;
 				//$coordinates = $result->geometry->location;
 				//$address_components = $result->address_components;
 
@@ -351,8 +351,12 @@
 			}
 
 			// Add back Google Maps result data
-
-			if (count($this->_filter_origin['latitude']) > 0) {
+      $this->_filter_origin['latitude'] = $this->_filter_origin['latitude'] ?? null;
+      $this->_filter_origin['longitude'] = $this->_filter_origin['longitude'] ?? null;
+      $this->_filter_origin['unit'] = $this->_filter_origin['unit'] ?? null;
+      
+      
+			if (is_countable($this->_filter_origin['latitude']) && count($this->_filter_origin['latitude']) > 0) {
 				$distance = new XMLElement('distance');
 				$distance->setAttribute('from', $this->_filter_origin['latitude'] . ',' . $this->_filter_origin['longitude']);
 				$distance->setAttribute('distance', $this->_driver->geoDistance($this->_filter_origin['latitude'], $this->_filter_origin['longitude'], $data['latitude'], $data['longitude'], $this->_filter_origin['unit']));

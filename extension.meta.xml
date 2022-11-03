@@ -2,7 +2,7 @@
 <extension id="addresslocationfield" status="released" xmlns="http://getsymphony.com/schemas/extension/1.0">
 	<name>Address Location Field</name>
 	<description>Geocode an address, then refine the latlng returned for precision.</description>
-	<repo type="github">https://github.com/designermonkey/addresslocationfield</repo>
+	<repo type="github">https://github.com/animaux/addresslocationfield</repo>
 	<url type="discuss">http://getsymphony.com/discuss/thread/70238/</url>
 	<types>
 		<type>Field Types</type>
@@ -14,6 +14,9 @@
 		</author>
 	</authors>
 	<releases>
+		<release version="1.4.1" date="2022-11-03" min="2.7.10" max="2.7.x">
+			- Fix PHP8 errors. May require PHP7.
+		</release>
 		<release version="1.4.0" date="2018-12-10" min="2.3" max="2.7.x">
 			- Add preferences UI (#22)
 		</release>
