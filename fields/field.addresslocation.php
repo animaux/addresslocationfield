@@ -115,9 +115,9 @@
 			}
 
 			if($data['latitude'] == '' || $data['longitude'] == ''){
-				$coordinates = $geocoded_result->geometry->location;
-				$result['latitude'] = $coordinates->lat;
-				$result['longitude'] = $coordinates->lng;
+				$coordinates = $geocoded_result->geometry->location ?? false;
+				$result['latitude'] = $coordinates->lat ?? false;
+				$result['longitude'] = $coordinates->lng ?? false;
 			}
 			elseif($data['latitude'] != '' && $data['longitude'] != ''){
 				$result['latitude'] = $data['latitude'];
@@ -172,6 +172,14 @@
 			}
 
 			// input values, from data or defaults
+			$data['latitude'] = $data['latitude'] ?? null;
+			$data['longitude'] = $data['longitude'] ?? null;
+			$data['street'] = $data['street'] ?? null;
+			$data['city'] = $data['city'] ?? null;
+			$data['region'] = $data['region'] ?? null;
+			$data['postal_code'] = $data['postal_code'] ?? null;
+			$data['country'] = $data['country'] ?? null;
+			
 			$coordinates = ($data['latitude'] && $data['longitude']) ? array($data['latitude'], $data['longitude']) : explode(',',$this->get('default_location_coords'));
 			$class = $this->get('location');
 
@@ -216,7 +224,7 @@
 
 			$label = Widget::Label('Longitude');
 			$label->setAttribute('class', 'longitude');
-			$label->appendChild(Widget::Input('fields'.$fieldnamePrefix.'['.$this->get('element_name').'][longitude]'.$fieldnamePostfix, $coordinates[1], 'text', array('readonly' => 'readonly')));
+			$label->appendChild(Widget::Input('fields'.$fieldnamePrefix.'['.$this->get('element_name').'][longitude]'.$fieldnamePostfix, $coordinates[1] ?? null, 'text', array('readonly' => 'readonly')));
 			$address->appendChild($label);
 
 			$label = Widget::Label();

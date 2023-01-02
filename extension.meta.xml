@@ -14,6 +14,9 @@
 		</author>
 	</authors>
 	<releases>
+		<release version="1.4.2" date="2023-01-02" min="2.7.10" max="2.7.x">
+			- Fix some more PHP8 errors in field.
+		</release>
 		<release version="1.4.1" date="2022-11-03" min="2.7.10" max="2.7.x">
 			- Fix PHP8 errors. May require PHP7.
 		</release>
